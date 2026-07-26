@@ -1,0 +1,11 @@
+{
+  "name": "zhuoyoux-checkin-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/worker.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}

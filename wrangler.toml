@@ -1,0 +1,14 @@
+name = "zhuoyoux-checkin"
+main = "src/worker.js"
+compatibility_date = "2026-07-26"
+workers_dev = true
+
+# Cloudflare Workers Cron Triggers 使用 UTC 时间。
+# 01:00 UTC = 北京/上海时间 09:00。
+[triggers]
+crons = ["0 1 * * *"]
+
+[vars]
+# 可选值：all/failure/none。默认 all；稳定后只想失败通知可改成 failure。
+TELEGRAM_NOTIFY_MODE = "all"
+ZHUOYOUX_PRINT_RESPONSE = "0"
