@@ -1,0 +1,25 @@
+name: 爱桌游每日签到
+
+on:
+  # GitHub Actions 的 cron 使用 UTC 时间。
+  # 01:00 UTC = 北京/上海时间 09:00。
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  checkin:
+    name: 自动签到
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run zhuoyoux check-in
+        env:
+          ZHUOYOUX_AUTHORIZATION: ${{ secrets.ZHUOYOUX_AUTHORIZATION }}
+          # 如网站后续对 UA 敏感，可在仓库 Variables 中配置 ZHUOYOUX_USER_AGENT 覆盖默认值。
+          ZHUOYOUX_USER_AGENT: ${{ vars.ZHUOYOUX_USER_AGENT }}
+        run: ./scripts/zhuoyoux_checkin.sh
