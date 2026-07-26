@@ -23,4 +23,8 @@ jobs:
           # 如网站后续对 UA 敏感，可在仓库 Variables 中配置 ZHUOYOUX_USER_AGENT 覆盖默认值。
           ZHUOYOUX_USER_AGENT: ${{ vars.ZHUOYOUX_USER_AGENT }}
           ZHUOYOUX_PRINT_RESPONSE: ${{ vars.ZHUOYOUX_PRINT_RESPONSE }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # 可选值：all/failure/none。默认 all；稳定后只想失败通知，可把仓库 Variables 的 TELEGRAM_NOTIFY_MODE 设为 failure。
+          TELEGRAM_NOTIFY_MODE: ${{ vars.TELEGRAM_NOTIFY_MODE }}
         run: ./scripts/zhuoyoux_checkin.sh
