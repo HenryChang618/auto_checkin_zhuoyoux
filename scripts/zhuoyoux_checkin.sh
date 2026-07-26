@@ -65,6 +65,8 @@ notify_telegram() {
   local status="$1"
   local title="$2"
   local detail="$3"
+  # 调用方为了可读性会传入 \n；这里统一转换为 Telegram 可显示的真实换行。
+  detail=${detail//\\n/$'\n'}
 
   if ! should_notify "${status}"; then
     echo "Telegram 通知：当前模式 ${TELEGRAM_NOTIFY_MODE}，跳过 ${status} 通知。"
