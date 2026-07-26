@@ -15,11 +15,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run zhuoyoux check-in
         env:
           ZHUOYOUX_AUTHORIZATION: ${{ secrets.ZHUOYOUX_AUTHORIZATION }}
           # 如网站后续对 UA 敏感，可在仓库 Variables 中配置 ZHUOYOUX_USER_AGENT 覆盖默认值。
           ZHUOYOUX_USER_AGENT: ${{ vars.ZHUOYOUX_USER_AGENT }}
+          ZHUOYOUX_PRINT_RESPONSE: ${{ vars.ZHUOYOUX_PRINT_RESPONSE }}
         run: ./scripts/zhuoyoux_checkin.sh
