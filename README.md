@@ -1,14 +1,11 @@
 # 爱桌游自动签到 Cloudflare Worker
 
-这个项目用于每天自动调用爱桌游签到接口，并把结果发送到 Telegram。
+该项目用于每天执行爱桌游签到任务，并把结果发送到 Telegram。
 
 ## 功能
 
 - 每天北京时间 09:00 自动签到。
-- 使用 Cloudflare Workers Cron Triggers 定时运行，不再使用 GitHub Actions 执行任务。
-- 签到接口返回“已经签到过”时，即使 HTTP 状态码是 403，也按成功处理。
-- 支持 Telegram 通知：成功、失败都通知，或只失败通知。
-- 敏感信息通过 Cloudflare 运行时 Secrets 配置，不写入代码仓库。
+- 支持 Telegram 通知。
 
 ## 项目结构
 
@@ -65,34 +62,22 @@ Settings -> Variables and Secrets
 必填。
 
 爱桌游签到接口请求头中的 `Authorization` 值。
-
-```text
 类型：Secret
-示例：不要写入仓库，直接粘贴真实 Authorization
-```
 
 ### TELEGRAM_BOT_TOKEN
 
 必填。
 
 Telegram BotFather 提供的机器人 token。
-
-```text
 类型：Secret
-示例：1234567890:AAxxxxxxxxxxxxxxxxxxxxxxxx
-```
+
 
 ### TELEGRAM_CHAT_ID
 
 必填。
 
 Telegram 通知目标会话 ID。
-
-```text
 类型：Secret
-示例：123456789
-```
-
 可以是你和机器人的私聊 ID，也可以是群组或频道 ID。
 
 ### MANUAL_RUN_TOKEN
@@ -100,9 +85,7 @@ Telegram 通知目标会话 ID。
 可选。
 
 手动触发 `/run` 接口时使用的保护令牌。
-
 未设置时，手动触发接口禁用。
-
 设置后可以通过下面方式手动触发：
 
 ```bash
